@@ -109,6 +109,17 @@ getNodeList().
   catch(err => console.error(err));
 
 const reqHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('access-control-allow-origin', '*');
+    res.setHeader('access-control-allow-credentials', 'true');
+    res.setHeader('access-control-allow-methods', '*');
+    res.setHeader('access-control-allow-headers', '*');
+    res.setHeader('access-control-max-age', 60 * 60 * 24 * 30);
+    res.statusCode = 200;
+    res.end();
+    return;
+  }
+  
   const proxy = getProxy(req.url!);
 
   if (proxy) {
