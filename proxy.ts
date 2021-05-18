@@ -155,13 +155,14 @@ server.on('listening', () => console.debug("@colyseus/proxy listening at", JSON.
  */
 if (server instanceof https.Server) {
   server.listen(HTTPS_PORT, HTTP_IP);
-
+  /*
   const httpServer = http.createServer((req, res) => {
     res.writeHead(301, { "Location": "https://" + req.headers['host']! + req.url });
     res.end();
   });
   httpServer.on('listening', () => console.debug("@colyseus/proxy http -> https listening at", 80));
   httpServer.listen(HTTP_PORT, HTTP_IP);
+  */
 
 } else {
   server.listen(HTTP_PORT, HTTP_IP);
